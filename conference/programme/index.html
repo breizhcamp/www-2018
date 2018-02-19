@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-  <head>
+<head>
   <meta charset="utf-8">
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Conférence</title>
+  <title>Programme</title>
 
   <meta name="author" content="" />
 
@@ -59,7 +59,7 @@
 
   
   <meta property="og:url" content="http://www.breizhcamp.org/" />
-  <meta property="og:title" content="Conférence" />
+  <meta property="og:title" content="Programme" />
   <meta property="og:description" content="Le BreizhCamp, c&#39;est 3 jours de conférence à Rennes.
     Créé en 2011 à l’initiative du BreizhJUG, nous sommes en cours de planification de la 8ème edition.
     Le BreizhCamp propose de se faire rencontrer une communauté de développeurs et d’experts, avec un contenu à la carte sur plus de 100 thèmes présentés.
@@ -72,7 +72,7 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@breizhcamp" />
   <meta name="twitter:creator" content="@breizhcamp" />
-  <meta name="twitter:title" content="Conférence" />
+  <meta name="twitter:title" content="Programme" />
   <meta name="twitter:description" content="Le BreizhCamp, c&#39;est 3 jours de conférence à Rennes.
     Créé en 2011 à l’initiative du BreizhJUG, nous sommes en cours de planification de la 8ème edition.
     Le BreizhCamp propose de se faire rencontrer une communauté de développeurs et d’experts, avec un contenu à la carte sur plus de 100 thèmes présentés.
@@ -82,23 +82,25 @@
 
 </head>
 
+<link href="http://www.breizhcamp.org/css/dependencies/fullcalendar.css" rel="stylesheet">
 
-  <body>
 
-    <div id="all">
+<body>
 
-        <header>
+<div id="all">
 
-          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+    <header>
+
+        <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
 
     <div class="navbar navbar-default yamm" role="navigation" id="navbar">
 
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="http://www.breizhcamp.org/">
-                    <img src="http://www.breizhcamp.org/img/logo.png" alt="Conférence logo" class="hidden-xs hidden-sm">
-                    <img src="http://www.breizhcamp.org/img/logo-small.png" alt="Conférence logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Conférence - aller à l&#39;accueil</span>
+                    <img src="http://www.breizhcamp.org/img/logo.png" alt="Programme logo" class="hidden-xs hidden-sm">
+                    <img src="http://www.breizhcamp.org/img/logo-small.png" alt="Programme logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Programme - aller à l&#39;accueil</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -169,13 +171,13 @@
 
 
 
-        </header>
+    </header>
 
-        <div id="heading-breadcrumbs" style="margin-bottom: 20px;padding-bottom: 0px;">
+    <div id="heading-breadcrumbs" style="margin-bottom: 20px;padding-bottom: 0px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Conférence</h1>
+                <h1>Programme</h1>
             </div>
         </div>
     </div>
@@ -202,75 +204,75 @@
 </div>
 
 
-        
-
-        <div id="content">
-            <div class="container">
-                <div class="row">
-                    
-
-<h1 id="plan-du-lieu">Plan du lieu</h1>
-
-<p>Si vous cherchez comment venir, c&rsquo;est expliqué <a href="http://www.breizhcamp.org/venir/">ici</a>.</p>
-
-
-<figure class="figure-center">
     
-        <img src="/img/plan-lieu.png" />
-    
-    
-    <figcaption>
-        <h4>Plan du batiment 2A</h4>
-        
-    </figcaption>
-    
-</figure>
 
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12" ng-app="programme" ng-controller="ProgrammeCtrl as progCtrl">
+                    <form novalidate>
+                        <div class="form-group">
+                            <label class="control-label"><strong>Track</strong></label>
+                            <ul class="list-inline">
+                                <li ng-repeat="(category, color) in progCtrl.categoryColors track by category">
+                                    <label class="btn btn-default calendar-filter-button"
+                                           ng-model="progCtrl.filters.category[category]"
+                                           uib-btn-checkbox>
+                                        <i class="fa fa-square fa-fw" ng-style="{color: color}"></i>
+                                        <span ng-bind="::category"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
 
-<h1 id="meet-greet">Meet &amp; Greet</h1>
+                        <div class="form-group">
+                            <label class="control-label"><strong>Format</strong></label>
+                            <ul class="list-inline">
+                                <li ng-repeat="formatDef in progCtrl.formatDefinitions track by $index">
+                                    <label class="btn btn-default calendar-filter-button" ng-model="progCtrl.filters.format[formatDef.format]"
+                                           uib-btn-checkbox>
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x"></i>
+                                            <i class="fa fa-stack-1x fa-inverse" ng-class="::formatDef.icon"></i>
+                                        </span>
+                                        <span ng-bind="::formatDef.label"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
 
-<p>Le BreizhCamp ce n’est pas que des conférences, des universités ou encore des labs avec des speakers au top, c’est aussi un moment privilégié d’échanges, de discussions, de rencontres et de bonne humeur et c’est pour ça que nous essayons tous les ans de faire du BreizhCamp une conférence toujours plus conviviale. Et c’est aussi pour ça, après les bons retours des éditions précédentes, que nous réitérons notre Soirée <em>Meet &amp; Greet</em> qui aura lieu le jeudi 29 mars.</p>
+                        <div class="form-group">
+                            <label class="control-label"><strong>Salle</strong></label>
+                            <ul class="list-inline">
+                                <li ng-repeat="(venue, room) in progCtrl.rooms track by room">
+                                    <label class="btn btn-default calendar-filter-button" ng-model="progCtrl.filters.room[room]" uib-btn-checkbox>
+                                        <em ng-bind="::room"></em>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
 
-<p>Si vous n&rsquo;étiez pas là les années précédentes, la formule est simple : jeudi, après la journée de conférences et labs techniques, on fait un <em>after</em> sur place, avec nourriture et boissons à foison, pour vous permettre de discuter (de la technique et/ou du sens de la vie, chacun choisit…), de revoir tous ces amis que vous ne croisez que dans des conférences, de bâtir des nouveaux projets ou simplement de passer un moment agréable avec plein d&rsquo;autres geeks.</p>
+                        <div class="form-group has-feedback">
+                            <label class="control-label" for="searchInput"><strong>Filtre</strong></label>
+                            <input autofocus id="searchInput" class="form-control" ng-model="progCtrl.search"
+                                   ng-change="progCtrl.refresh()">
+                            <a class="form-control-feedback" href ng-click="progCtrl.clearSearch()"
+                               ng-show="progCtrl.search" style="pointer-events: initial">
+                                <i class="fa fa-close fa-lg"></i>
+                            </a>
+                        </div>
+                    </form>
 
-<p>Nous remercions les sponsors du Meet &amp; Greet qui vous offrent cette soirée conviviale !</p>
-
-<p><center>
-<img src="/img/meetandgreet.png" alt="Meet &amp; Greet" />
-</center></p>
-
-<h1 id="un-code-de-conduite">Un code de conduite ?</h1>
-
-<p>Nous n’avons pas de Code of conduct à proprement parler, nous comptons sur le bienveillant bon sens de nos participants, speakers et sponsors pour ne pas entacher cette belle fête annuelle qu’est le BreizhCamp d’un dérapage inapproprié.  Si jamais vous étiez témoin d’un tel comportement lors de votre participation au BreizhCamp, n’hésitez pas à nous en faire part rapidement (on est facilement repérables, on est ceux qui courent dans tous les sens tout le temps).</p>
-
-<p>En dehors de ça, quelques recommandations, pour lesquelles nous nous sommes fortement inspirés de celles de  Django-fr, parce qu’elles étaient très bien :</p>
-
-<p>Les 10 commandements du participant au BreizhCamp:</p>
-
-<ul>
-<li>Tu seras gentil et courtois avec les gens que tu côtoieras sur place, quels que soient leur âge, leur couleur de peau, leur genre et leur langage de programmation professionnellement utilisé au quotidien (sauf bien sur si c’est <span class="language-troll">Ruby</span>) - ou toute autre différence ;</li>
-<li>Tu accorderas de l’attention aux conférences, par respect pour l’orateur que tu es venu écouter ;</li>
-<li>Tu t&rsquo;accommoderas sans rechigner de l’idée de ne pas disposer d’un accès internet pendant plus de vingt minutes (voir plus si affinités). Et tout le long de la conférence, si tu n’as pas communiqué ton mail à temps ;</li>
-<li>Tu respecteras les lieux qui te sont mis à disposition comme tu respectes ton chez-toi à toi ;</li>
-<li>Tu ne feras pas de coma éthylique sur la voie publique (ni ailleurs, en fait) ;</li>
-<li>Tu veilleras à porter une attention particulière à l’endroit où tu poses tes affaires, en les surveillant régulièrement ;</li>
-<li>Tu ne trolleras pas ton prochain, même pour rire - ou alors seulement s’il fait du <span class="language-troll">Ruby</span> ;</li>
-<li>Tu ne mettras personne mal à l&rsquo;aise ou dans l&rsquo;embarras, même si c&rsquo;est &ldquo;juste une blague&rdquo;, pas plus que tu ne harcèleras quelqu&rsquo;un - stop, ça veut dire stop, non, c&rsquo;est non. Même se moquer de <span class="language-troll">Ruby</span>, au bout d’un moment c’est lourd, même si c’est tentant ;</li>
-<li>Tu n’oublieras pas ton parapluie (pour la crème solaire, les clichés bretons ont la vie dure, on va pas essayer de te la faire amener…) ;</li>
-<li>Tu partageras ton expérience avec tout ceux qui n’ont pas eu de billet via les réseaux sociaux, c’est la meilleure pub qu’on puisse espérer.</li>
-</ul>
-
-<h1 id="call-for-proposal">Call For Proposal</h1>
-
-<p>Le CFP est hébergé sur <a href="https://breizhcamp.cfp.io">https://breizhcamp.cfp.io</a>.</p>
-
+                    <div ui-calendar="progCtrl.calendarConfig" ng-model="progCtrl.agenda" ng-if="progCtrl.agenda"
+                                 calendar="calendar"></div>
                 </div>
             </div>
-            
         </div>
         
+    </div>
+    
 
-        <footer id="footer">
+    <footer id="footer">
     <div class="container text-center">
         <div class="row">
             <div class="col-md-4">
@@ -355,10 +357,10 @@
 
 
 
-    </div>
-    
+</div>
 
-    
+
+
 
 
 <script src="http://www.breizhcamp.org/js/dependencies/jquery.min.js"></script>
@@ -377,19 +379,34 @@
 <script src="http://www.breizhcamp.org/js/main.js"></script>
 
 
-    <script src="http://www.breizhcamp.org/js/languagetroll.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/angular.min.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/angular-animate.min.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/angular-sanitize.min.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/marked.min.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/angular-marked.min.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/angular-locale_fr.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/ui-bootstrap-tpls.min.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/moment.min.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/fullcalendar.min.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/calendar.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/lodash.min.js"></script>
 
-    <script>
-        jQuery(document).ready(function() {
-            jQuery('.language-troll')
-                .attr('title', "Si ton langage n'apparaît pas, ne te réjouis pas trop vite, c'est peut-être parce qu'il ne mérite même pas d'être vanné...")
-                .text(LANGUAGE_TROLL.next());
+<script src="http://www.breizhcamp.org/js/dependencies/pdfkit.js"></script>
+<script src="http://www.breizhcamp.org/js/dependencies/blob-stream.js"></script>
 
-            setInterval(function () {
-                jQuery('.language-troll').text(LANGUAGE_TROLL.next());
-            }, 3000);
-        });
-    </script>
 
-  </body>
+
+<script>
+    const PROGRAMME_CONFIG = (function () {
+        return {
+            "get_talks_method": "cfp_api",
+            "start" : "2018-03-28",
+            "end" : "2018-03-30"
+        }
+    })();
+</script>
+<script src="http://www.breizhcamp.org/js/programme.js"></script>
+
+
+</body>
 </html>
